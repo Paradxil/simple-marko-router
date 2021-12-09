@@ -24,6 +24,6 @@
   },
   "scripts": {
     "dev": "npx marko-serve ./demo/index.marko",
-    "build-demo": "npx marko-build ./demo/index.marko --static -o ./docs"
+    "build-demo": "npx marko-build ./demo/index.marko --static -o ./build/docs"
   }
 }
