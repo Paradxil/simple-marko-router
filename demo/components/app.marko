@@ -1,7 +1,7 @@
 class {
     onCreate() {
         this.state = {
-            name: "test"
+            name: "test",
         };
     }
 
@@ -9,7 +9,6 @@ class {
         this.state.name = value;
     }
 }
-
 style {
     * {
         box-sizing: border-box;
@@ -18,7 +17,7 @@ style {
     body {
         margin: 0px;
         padding: 0px;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         background-color: #f8f9fa;
     }
 
@@ -30,13 +29,13 @@ style {
         padding: 10px;
         display: inline-block;
         border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.25s, background-color 0.25s;
     }
 
     a:hover {
         background-color: #228be6;
-        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 
     .wrapper {
@@ -44,7 +43,7 @@ style {
         margin: 5%;
         border-radius: 10px;
         background-color: white;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         max-width: 900px;
     }
 
@@ -53,6 +52,8 @@ style {
         background-color: #339af0;
         color: white;
         padding: 20px;
+        display: flex;
+        align-items: center;
     }
 
     .header h1 {
@@ -66,7 +67,11 @@ style {
         gap: 10px;
     }
 
-    h1, h2, h3, h4, h5 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
         font-weight: 100;
     }
 
@@ -89,31 +94,45 @@ style {
         border-radius: 5px;
         background-color: #f1f3f5;
     }
+
+    .back-button {
+        border-radius: 5px;
+        display: flex;
+        padding: 5px;
+        align-items: center;
+        place-content: center;
+        margin-right: 15px;
+        margin-right: 15px;
+        transition: background-color 0.25s;
+        cursor: pointer;
+    }
+
+    .back-button:hover {
+        background-color: #228be6;
+    }
 }
 
 div.wrapper
     div.header
+        router-link path="/"
+            div.back-button
+                i no-update data-feather="chevron-left"
         h1 -- simple-marko-router
     div.content
-        router default-route='/'
-            @route path='/'
+        router default-route="/"
+            @route path="/"
                 demo
-            @route path='/about'
-                router-link path='/'
-                    a -- Return to demo
+            @route path="/about"
                 h2 -- About
                 p -- To learn more about simple-marko-router visit our github page!
-                a href='https://github.com/Paradxil/simple-marko-router' -- Github
-            @route|{params}| path='/i/am/:name'
-                router-link path='/'
-                    a -- Return to demo
+                a href="https://github.com/Paradxil/simple-marko-router" -- Github
+            @route|{ params }| path="/i/am/:name"
                 p -- Hello ${params.name}!
-            @route|{params}| path='/show/rgb/:r/:g/:b/'
-                router-link path='/'
-                    a -- Return to demo
-                p style={color: `rgb(${params.r}, ${params.g}, ${params.b})`, fontSize: '20px'} 
+            @route|{ params }| path="/show/rgb/:r/:g/:b/"
+                p style={
+                    color: `rgb(${params.r}, ${params.g}, ${params.b})`,
+                    fontSize: "20px",
+                }
                     -- This text is colored according to the route!
-            @route|{params}| path='/:name/is/:age'
-                router-link path='/'
-                    a -- Return to demo
+            @route|{ params }| path="/:name/is/:age"
                 p -- ${params.name} is ${params.age}!
