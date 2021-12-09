@@ -1,3 +1,15 @@
+class {
+    onCreate() {
+        this.state = {
+            name: "test"
+        };
+    }
+
+    setName(value) {
+        this.state.name = value;
+    }
+}
+
 style {
     * {
         box-sizing: border-box;
@@ -14,7 +26,7 @@ style {
         width: fit-content;
         color: white;
         cursor: pointer;
-        background-color: #4dabf7;
+        background-color: #339af0;
         padding: 10px;
         display: inline-block;
         border-radius: 5px;
@@ -38,7 +50,7 @@ style {
 
     .header {
         width: 100%;
-        background-color: #845ef7;
+        background-color: #339af0;
         color: white;
         padding: 20px;
     }
@@ -79,27 +91,29 @@ style {
     }
 }
 
-$ let name = null
-
 div.wrapper
     div.header
         h1 -- simple-marko-router
     div.content
-        router
+        router default-route='/'
             @route path='/'
-                h2 -- Demo
-                hr
-                h3 -- Standard Routing
-                router-link path='/about'
-                    a -- Got to /about
-                hr
-                h3 -- Single Param
-                input key="name" placeholder="name" on-input((event)=>name=event.target.value)
-                router-link path='/i/am/' + name
-                    a -- Got to /i/am/${name}
+                demo
             @route path='/about'
+                router-link path='/'
+                    a -- Return to demo
                 h2 -- About
                 p -- To learn more about simple-marko-router visit our github page!
                 a href='https://github.com/Paradxil/simple-marko-router' -- Github
             @route|{params}| path='/i/am/:name'
-                p -- Welcome ${params.first} ${params.last}!
+                router-link path='/'
+                    a -- Return to demo
+                p -- Hello ${params.name}!
+            @route|{params}| path='/show/rgb/:r/:g/:b/'
+                router-link path='/'
+                    a -- Return to demo
+                p style={color: `rgb(${params.r}, ${params.g}, ${params.b})`, fontSize: '20px'} 
+                    -- This text is colored according to the route!
+            @route|{params}| path='/:name/is/:age'
+                router-link path='/'
+                    a -- Return to demo
+                p -- ${params.name} is ${params.age}!

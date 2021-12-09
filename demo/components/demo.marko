@@ -1,0 +1,43 @@
+class {
+    onCreate() {
+        this.state = {
+            name: '',
+            r: '204',
+            g: '93',
+            b: '232',
+            age: ''
+        };
+    }
+
+    setState(name, event) {
+        this.state[name] = event.target.value;
+    }
+}
+
+
+h2 -- Demo
+hr
+h3 -- Standard Routing
+router-link path='/about'
+    a -- Go to /about
+hr
+h3 -- Single Param
+input value=state.name placeholder='Enter name' on-input('setState', 'name')
+router-link path=`/i/am/${state.name}`
+    a -- Go to /i/am/${state.name}
+hr
+h3 -- Multiple Params
+label for='red' -- Red
+input id='red' type='number' value=state.r placeholder='Red amount' on-input('setState', 'r')
+label for='green' -- Green
+input id='green' type='number' value=state.g placeholder='Green amount' on-input('setState', 'g')
+label for='blue' -- Blue
+input id='blue' type='number' value=state.b placeholder='Blue amount' on-input('setState', 'b')
+router-link path=`/show/rgb/${state.r}/${state.g}/${state.b}`
+    a -- Go to /show/rgb/${state.r}/${state.g}/${state.b}
+hr
+h3 -- More Multiple Params
+input value=state.name placeholder='Enter name' on-input('setState', 'name')
+input value=state.age placeholder='Enter age' on-input('setState', 'age')
+router-link path=`/${state.name}/is/${state.age}`
+    a -- Go to /${state.name}/is/${state.age}
