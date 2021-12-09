@@ -1,0 +1,105 @@
+style {
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0px;
+        padding: 0px;
+        font-family: 'Roboto', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    a {
+        width: fit-content;
+        color: white;
+        cursor: pointer;
+        background-color: #4dabf7;
+        padding: 10px;
+        display: inline-block;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        transition: box-shadow 0.25s, background-color 0.25s;
+    }
+
+    a:hover {
+        background-color: #228be6;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    .wrapper {
+        overflow: hidden;
+        margin: 5%;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        max-width: 900px;
+    }
+
+    .header {
+        width: 100%;
+        background-color: #845ef7;
+        color: white;
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-weight: 500;
+    }
+
+    .content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-weight: 100;
+    }
+
+    p {
+        font-weight: 300;
+    }
+
+    hr {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #f1f3f5;
+    }
+
+    input {
+        display: inline-block;
+        padding: 10px 15px;
+        max-width: 300px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: #f1f3f5;
+    }
+}
+
+$ let name = null
+
+div.wrapper
+    div.header
+        h1 -- simple-marko-router
+    div.content
+        router
+            @route path='/'
+                h2 -- Demo
+                hr
+                h3 -- Standard Routing
+                router-link path='/about'
+                    a -- Got to /about
+                hr
+                h3 -- Single Param
+                input key="name" placeholder="name" on-input((event)=>name=event.target.value)
+                router-link path='/i/am/' + name
+                    a -- Got to /i/am/${name}
+            @route path='/about'
+                h2 -- About
+                p -- To learn more about simple-marko-router visit our github page!
+                a href='https://github.com/Paradxil/simple-marko-router' -- Github
+            @route|{params}| path='/i/am/:name'
+                p -- Welcome ${params.first} ${params.last}!

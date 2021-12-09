@@ -1,6 +1,6 @@
 {
   "name": "simple-marko-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small and simple router for MarkoJS.",
   "main": "router.js",
   "keywords": [
@@ -12,5 +12,16 @@
   "license": "MIT",
   "dependencies": {
     "marko": "^5.17.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Paradxil/simple-marko-router.git"
+  },
+  "homepage": "https://github.com/Paradxil/simple-marko-router#readme",
+  "devDependencies": {
+    "@marko/serve": "^4.2.3"
+  },
+  "scripts": {
+    "dev": "npx marko-serve ./demo/index.marko"
   }
 }
