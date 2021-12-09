@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/Paradxil/simple-marko-router#readme",
   "devDependencies": {
+    "@marko/build": "^4.2.3",
     "@marko/serve": "^4.2.3"
   },
   "scripts": {
-    "dev": "npx marko-serve ./demo/index.marko"
+    "dev": "npx marko-serve ./demo/index.marko",
+    "build-demo": "npx marko-build ./demo/index.marko --static -o ./demo/build"
   }
 }

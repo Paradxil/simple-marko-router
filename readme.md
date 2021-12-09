@@ -93,8 +93,6 @@ a on-click('handleClick') -- Login
 
 The following is a list of planned features (and current limitations).
 
-- Does not check the url and route accordingly on page load. `default-route` is always shown first.
-- `default-route` must be defined otherwise an empty page is shown.
 - No method for passing initial input to components shown using the `component` attribute.
 - Need a way to pass input using `navigate` and `router-link`.
 
