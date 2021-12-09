@@ -1,0 +1,16 @@
+{
+  "name": "simple-marko-router",
+  "version": "1.0.0",
+  "description": "A small and simple router for MarkoJS.",
+  "main": "router.js",
+  "keywords": [
+    "markojs",
+    "components",
+    "router"
+  ],
+  "author": "Hunter Stratton",
+  "license": "MIT",
+  "dependencies": {
+    "marko": "^5.17.5"
+  }
+}
