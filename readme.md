@@ -51,8 +51,8 @@ Values are passed back as parameters to the nested tag `@route`. For more inform
 ```marko 
 router default-route='/project/this-is-the-project-id'
     @route|{params}| path='/project/:id'
-        $console.log(params.id) //Will print out 'this-is-the-project-id'
-
+        $console.log(params.id)
+//Print out 'this-is-the-project-id'
 ```
 
 Components rendered using the `component` attribute will be passed the route params as part of their input: `input.params`.
