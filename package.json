@@ -1,6 +1,6 @@
 {
   "name": "simple-marko-router",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A small and simple router for MarkoJS.",
   "main": "router.js",
   "keywords": [

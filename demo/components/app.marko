@@ -12,6 +12,10 @@ class {
     setName(value) {
         this.state.name = value;
     }
+
+    logNavigation(event) {
+        console.log(event);
+    }
 }
 style {
     * {
@@ -123,7 +127,7 @@ div.wrapper
                 i no-update data-feather="chevron-left"
         h1 -- simple-marko-router
     div.content
-        router default-route="/" base-route='/simple-marko-router'
+        router default-route="/" base-route='/simple-marko-router' on-navigate('logNavigation')
             @route path="/"
                 demo
             @route path="/about"

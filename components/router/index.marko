@@ -28,6 +28,7 @@ class {
         else if(i > -1) {
             this.state.params = params;
             this.state.currentRoute = this.input.routes[i];
+            this.emit('navigate', {index: i, route: route, path: path, params: params});
         }
     }
 }
