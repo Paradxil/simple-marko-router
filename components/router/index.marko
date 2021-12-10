@@ -9,47 +9,25 @@ class {
     }
 
     onMount() {
-        Router.initialize();
-
-        listen('popstate', (event) => {
-            this.navigate(event.state.path)
-        });
-
-        listen('navigate', (path) => {
-            this.navigate(path);
-        });
-
-        if(this.input && this.input.defaultRoute) {
-            navigate(this.input.defaultRoute);
+        if(this.input == null || this.input.routes == null) {
+            console.warn('simple-marko-router: No routes are defined.');
+            return;
         }
-        else {
-            navigate(window.location.pathname);
-        }
+
+        Router.initialize(this.input.routes.map(el=>el.path), this.input.baseRoute||null);
+
+        listen('navigate', this.navigate.bind(this));
+        navigate(window.location.pathname);
     }
 
-    navigate(path) {
-        for(let route of this.input.routes) {
-            let routeParams = route.path.match(/:[^\/]*(\/|$)/gi);
-
-            let p = route.path.replaceAll('/', '\\/');
-            p = route.path.replaceAll(/:[^\/]*(\/|$)/gi, '([^\\\/]+)(?:\\\/|$)');
-            p += '$';
-
-            let search = new RegExp(p, 'i');
-            let matches = path.match(search);
-
-            if(matches !== null && matches.index === 0) {
-                this.state.params = {};
-
-                let paramIndex = 1;
-                for(let i = 0; i + 1 < matches.length && i < routeParams.length; i++) {
-                    this.state.params[routeParams[i].replaceAll(/[\/:]/g, '')] = matches[i + 1]; 
-                }
-
-                this.state.currentRoute = route;
-
-                return
-            }
+    navigate(i, route, path, params) {
+        // Show default route if defined when no matching route is found.
+        if(i === -1 && this.input.defaultRoute) {
+            navigate(this.input.defaultRoute);
+        }
+        else if(i > -1) {
+            this.state.params = params;
+            this.state.currentRoute = this.input.routes[i];
         }
     }
 }
@@ -58,5 +36,3 @@ if(state.currentRoute && state.currentRoute.component)
     <${state.currentRoute?state.currentRoute.component:null} params=state.params/>
 else-if(state.currentRoute)
     <${state.currentRoute?state.currentRoute.renderBody:null} params=state.params/>
-else
-    p -- No matching path for given routes.
