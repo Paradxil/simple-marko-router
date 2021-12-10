@@ -43,7 +43,7 @@ Instead of nesting tags you want to display under `@route`, you can assign the `
 You can use different styles for different routes. However defining the `component` attribute will prevent that route from rendering its body content.
 
 ```marko
-import HomePage from '../pages/home.marko';
+import HomePage from '<home>';
 
 router default-route='/home'
     @route path='/home' component=HomePage
