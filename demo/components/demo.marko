@@ -18,15 +18,18 @@ class {
 h2 -- Demo
 hr
 h3 -- Standard Routing
+pre -- route: '/about'
 router-link path='/about'
     a -- Go to /about
 hr
 h3 -- Single Param
+pre -- route: '/i/am/:name'
 input value=state.name placeholder='Enter name' on-input('setState', 'name')
 router-link path=`/i/am/${state.name}`
     a -- Go to /i/am/${state.name}
 hr
 h3 -- Multiple Params
+pre -- route: '/show/rgb/:r/:g/:b'
 label for='red' -- Red
 input id='red' type='number' value=state.r placeholder='Red amount' on-input('setState', 'r')
 label for='green' -- Green
@@ -37,6 +40,7 @@ router-link path=`/show/rgb/${state.r}/${state.g}/${state.b}`
     a -- Go to /show/rgb/${state.r}/${state.g}/${state.b}
 hr
 h3 -- More Multiple Params
+pre -- route: '/:name/is/:age'
 input value=state.name placeholder='Enter name' on-input('setState', 'name')
 input value=state.age placeholder='Enter age' on-input('setState', 'age')
 router-link path=`/${state.name}/is/${state.age}`
