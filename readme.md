@@ -26,11 +26,19 @@ router-link path='/login'
     a -- Go to login
 ```
 
-## Advanced usage
+On page load the router will automatically navigate to the correct page based on the url. The `default-route` will be shown when no other routes match.
 
-Instead of nesting the tags you want to display under `@route`, you can define the `component` attribute to be an imported marko tag. This allows you to provide a single component that will be shown for that route.
+Optionally a `base-route` attribute can be defined that will be pre-pended to all paths.
 
-Route params for these components can be accessed using `input.params`.
+```marko
+router default-route='/' base-route='/app'
+    @route path='/'
+        home
+```
+
+## Component attribute
+
+Instead of nesting tags you want to display under `@route`, you can assign the `component` attribute an imported marko tag. This allows you to provide a single component that will be shown for that route. Route params for these components can be accessed using `input.params`.
 
 You can use different styles for different routes. However defining the `component` attribute will prevent that route from rendering its body content.
 
