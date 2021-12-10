@@ -1,7 +1,9 @@
 # simple-marko-router
-This router was designed to be simple, lightweight, and integrate with MarkoJS. As such its only dependency is Marko and it is not feature heavy.
+This router was made for use with MarkoJS. It is lightweight and simple, with Marko as the only production dependency.
 
 Currently tested using `@marko/serve`.
+
+Demo: https://paradxil.github.io/simple-marko-router/
 
 ## Getting started
 
@@ -44,15 +46,15 @@ router default-route='/home'
 
 ## Route params
 
-simple-marko-router does support route parameters such as `/project/:id`
+simple-marko-router supports route parameters such as `/project/:id` or `/:userid/view/:projectid`.
 
-Values are passed back as parameters to the nested tag `@route`. For more information on Marko tag parameters see https://markojs.com/docs/syntax/#parameters.
+Parameter values are passed back to the nested tag `@route`. For more information on Marko tag parameters see https://markojs.com/docs/syntax/#parameters.
 
 ```marko 
 router default-route='/project/this-is-the-project-id'
     @route|{params}| path='/project/:id'
         $console.log(params.id)
-//Print out 'this-is-the-project-id'
+//Prints out 'this-is-the-project-id'
 ```
 
 Components rendered using the `component` attribute will be passed the route params as part of their input: `input.params`.
@@ -87,6 +89,58 @@ class {
 }
 
 a on-click('handleClick') -- Login
+```
+
+## Known bugs/issues
+
+Due to either a limitation with MarkoJs or my implementation, stateful content in a route will not always update correctly when the state is the parent of the router.
+
+For example this will not work, neither the text input nor the p tag will update correctly on input.
+
+```marko
+class {
+    onCreate() {
+        this.state = {
+            inputText: null
+        };
+    }
+
+    setInput(event) {
+        this.state.inputText = event.target.value;
+    }
+}
+
+router default-route='/'
+    @route path='/'
+        input value=state.inputText on-input('setInput')
+        p -- You input: ${state.inputText}
+
+```
+
+Instead break this into two components, and nest the state under the route.
+
+```marko
+/// app.marko
+router default-route='/'
+    @route path='/'
+        inputdemo
+
+/// inputdemo.marko
+class {
+    onCreate() {
+        this.state = {
+            inputText: null
+        };
+    }
+
+    setInput(event) {
+        this.state.inputText = event.target.value;
+    }
+}
+
+input value=state.inputText on-input('setInput')
+p -- You input: ${state.inputText}
+
 ```
 
 ## Limitations & Road Map
