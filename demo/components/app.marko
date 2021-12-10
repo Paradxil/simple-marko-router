@@ -5,6 +5,10 @@ class {
         };
     }
 
+    onMount() {
+        feather.replace();
+    }
+
     setName(value) {
         this.state.name = value;
     }
@@ -119,7 +123,7 @@ div.wrapper
                 i no-update data-feather="chevron-left"
         h1 -- simple-marko-router
     div.content
-        router default-route="/"
+        router default-route="/" base-route='/simple-marko-router'
             @route path="/"
                 demo
             @route path="/about"
